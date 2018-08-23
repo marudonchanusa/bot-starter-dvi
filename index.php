@@ -1,42 +1,45 @@
 <?php
-	// Composer‚ÅƒCƒ“ƒXƒg[ƒ‹‚µ‚½ƒ‰ƒCƒuƒ‰ƒŠ‚ðˆêŠ‡“Ç‚Ýž‚Ý
+	// Composerã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ãŸãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä¸€æ‹¬èª­ã¿è¾¼ã¿
 	require_once __DIR__ . '/vendor/autoload.php';
 
-	// ƒAƒNƒZƒXƒg[ƒNƒ“‚ðŽg‚¢CurlHTTPClient‚ðƒCƒ“ƒXƒ^ƒ“ƒX‰»
+	// ã‚¢ã‚¯ã‚»ã‚¹ãƒˆãƒ¼ã‚¯ãƒ³ã‚’ä½¿ã„CurlHTTPClientã‚’ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–
 	$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
 
-	// CurlHTTPClient‚ÆƒV[ƒNƒŒƒbƒg‚ðŽg‚¢LINEBot‚ðƒCƒ“ƒXƒ^ƒ“ƒX‰»
+	// CurlHTTPClientã¨ã‚·ãƒ¼ã‚¯ãƒ¬ãƒƒãƒˆã‚’ä½¿ã„LINEBotã‚’ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–
 	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 
-	// LINE Messaging API‚ªƒŠƒNƒGƒXƒg‚É•t—^‚µ‚½–¼‚ðŽæ“¾
+	// LINE Messaging APIãŒãƒªã‚¯ã‚¨ã‚¹ãƒˆã«ä»˜ä¸Žã—ãŸç½²åã‚’å–å¾—
 	$signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
-	// –¼‚ª³“–‚©ƒ`ƒFƒbƒNB³“–‚Å‚ ‚ê‚ÎƒŠƒNƒGƒXƒg‚ðƒp[ƒX‚µ”z—ñ‚Ö
+	// ç½²åãŒæ­£å½“ã‹ãƒã‚§ãƒƒã‚¯ã€‚æ­£å½“ã§ã‚ã‚Œã°ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ãƒ‘ãƒ¼ã‚¹ã—é…åˆ—ã¸
 	$events = $bot->parseEventRequest(file_get_contents('PHP://input'), $signature);
 
-	// ”z—ñ‚ÉŠi”[‚³‚ê‚½ŠeƒCƒxƒ“ƒg‚ðƒ‹[ƒv‚Åˆ—
+	// é…åˆ—ã«æ ¼ç´ã•ã‚ŒãŸå„ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒ«ãƒ¼ãƒ—ã§å‡¦ç†
 	foreach($events as $event) {
-		// ƒeƒLƒXƒg‚ð•ÔM
+		// ãƒ†ã‚­ã‚¹ãƒˆã‚’è¿”ä¿¡
 		//$bot->replyText($event->getReplyToken(), 'TextMessage');
 		replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
 	}
 
-	// ƒeƒLƒXƒg‚ð‘—MBˆø”‚ÍLINEBotA•ÔMæAƒeƒLƒXƒg
+	// ãƒ†ã‚­ã‚¹ãƒˆã‚’é€ä¿¡ã€‚å¼•æ•°ã¯LINEBotã€è¿”ä¿¡å…ˆã€ãƒ†ã‚­ã‚¹ãƒˆ
 	function replyTextMessage($bot, $replyToken, $text) {
-		// •ÔM‚ðs‚¢ƒŒƒXƒ|ƒ“ƒX‚ðŽæ“¾
-		// TextMessageBuiler‚Ìˆø”‚ÍƒeƒLƒXƒg
-		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+		// è¿”ä¿¡ã‚’è¡Œã„ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å–å¾—
+		// TextMessageBuilerã®å¼•æ•°ã¯ãƒ†ã‚­ã‚¹ãƒˆ
+		//$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(
+			$response->getRawBody()
+		));
 
-		// ƒŒƒXƒ|ƒ“ƒX‚ªˆÙí‚Èê‡
+		// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãŒç•°å¸¸ãªå ´åˆ
 		if (!$response->isSuccessed()){
-			//ƒGƒ‰[“à—e‚ðo—Í
+			//ã‚¨ãƒ©ãƒ¼å†…å®¹ã‚’å‡ºåŠ›
 			error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
 		}
 	}
 
-	// ‰æ‘œ‚ð‘—MBˆø”‚ÍLINEBotA•ÔMæA‰æ‘œURLAƒTƒ€ƒlƒCƒ‹URL
+	// ç”»åƒã‚’é€ä¿¡ã€‚å¼•æ•°ã¯LINEBotã€è¿”ä¿¡å…ˆã€ç”»åƒURLã€ã‚µãƒ ãƒã‚¤ãƒ«URL
 	function replyImageMessage($bot, $replyToken, $originalImageUrl, $previewImageUrl){
-		// ImageMessageBuilder‚Ìˆø”‚Í‰æ‘œURLAƒTƒ€ƒlƒCƒ‹URL
+		// ImageMessageBuilderã®å¼•æ•°ã¯ç”»åƒURLã€ã‚µãƒ ãƒã‚¤ãƒ«URL
 		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\ImageMessageBuiler(
 						$originalImageUrl, $previewImageUrl));
 		if (!$response->isSuccessed()){
