@@ -25,10 +25,7 @@
 	function replyTextMessage($bot, $replyToken, $text) {
 		// 返信を行いレスポンスを取得
 		// TextMessageBuilerの引数はテキスト
-		//$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
-		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(
-			$response->getRawBody()
-		));
+		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
 
 		// レスポンスが異常な場合
 		if (!$response->isSuccessed()){
