@@ -18,7 +18,7 @@
 	foreach($events as $event) {
 		// テキストを返信
 		//$bot->replyText($event->getReplyToken(), 'TextMessage');
-		replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage');
+		replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
 	}
 
 	// テキストを送信。引数はLINEBot、返信先、テキスト
