@@ -24,8 +24,8 @@
 
 		switch($event->getType()){
 			case 'follow':
-				//joinFriend($bot, $event);
-				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OKOK!');
+				joinFriend($bot, $event);
+				//replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OKOK!');
 				break;
 			case 'message':
 				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
@@ -36,9 +36,9 @@
 
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
-		$returnStr = 'あなたのID:' . $event->getUserId;
-		$returnStr.= 'グループID:' . $event->getGroupId;
-		$returnStr.= 'ルームID:' . $event->getRoomId;
+		$returnStr = 'あなたのID:' . $event->getUserId();
+		$returnStr.= 'グループID:' . $event->getGroupId();
+		$returnStr.= 'ルームID:' . $event->getRoomId();
 		$returnStr.= '友達追加して頂きありがとうございます。';
 		
 		replyTextMessage($bot, $event->getReplyToken(), 
