@@ -24,7 +24,8 @@
 
 		switch($event->getType()){
 			case 'follow':
-				joinFriend($bot, $event);
+				//joinFriend($bot, $event);
+				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OKOK!');
 				break;
 			case 'message':
 				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
