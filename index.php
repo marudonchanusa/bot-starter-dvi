@@ -20,7 +20,7 @@
 		//$bot->replyText($event->getReplyToken(), 'TextMessage');
 		//replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
 
-		echo "type:" . $event->getType();
+		error_log('type:' . $event->getType());
 
 		switch($event->getType()){
 			case 'follow':
