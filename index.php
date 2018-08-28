@@ -20,6 +20,8 @@
 		//$bot->replyText($event->getReplyToken(), 'TextMessage');
 		//replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
 
+		echo "type:" . $event->getType();
+
 		switch($event->getType()){
 			case 'follow':
 				joinFriend($bot, $event);
