@@ -51,10 +51,10 @@
 		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
 
 		// レスポンスが異常な場合
-		if (!$response->isSuccessed()){
-			//エラー内容を出力
-			error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
-		}
+		//if (!$response->isSuccessed()){
+		//	//エラー内容を出力
+		//	error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
+		//}
 	}
 
 	// 画像を送信。引数はLINEBot、返信先、画像URL、サムネイルURL
