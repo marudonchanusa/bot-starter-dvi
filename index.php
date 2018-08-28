@@ -18,7 +18,28 @@
 	foreach($events as $event) {
 		// テキストを返信
 		//$bot->replyText($event->getReplyToken(), 'TextMessage');
-		replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
+		//replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
+
+		switch($event->getType()){
+			case 'follow':
+				joinFriend($bot, $event);
+				break;
+			case 'message':
+				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
+				break;
+		}
+
+	}
+
+	// 友達追加時のイベント
+	function joinFriend($bot, $event) {
+		$returnStr = 'あなたのID:' . $event->getUserId;
+		$returnStr.= 'グループID:' . $event->getGroupId;
+		$returnStr.= 'ルームID:' . $event->getRoomId;
+		$returnStr.= '友達追加して頂きありがとうございます。';
+		
+		replyTextMessage($bot, $event->getReplyToken, 
+			new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($returnStr));
 	}
 
 	// テキストを送信。引数はLINEBot、返信先、テキスト
