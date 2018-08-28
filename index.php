@@ -33,13 +33,13 @@
 
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
-		$returnStr = 'あなたのID:' . $event->getUserId;
-		$returnStr.= 'グループID:' . $event->getGroupId;
-		$returnStr.= 'ルームID:' . $event->getRoomId;
-		$returnStr.= '友達追加して頂きありがとうございます。';
+		//$returnStr = 'あなたのID:' . $event->getUserId;
+		//$returnStr.= 'グループID:' . $event->getGroupId;
+		//$returnStr.= 'ルームID:' . $event->getRoomId;
+		//$returnStr.= '友達追加して頂きありがとうございます。';
 		
 		replyTextMessage($bot, $event->getReplyToken, 
-			new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($returnStr));
+			new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Thank you to join Friend!'));
 	}
 
 	// テキストを送信。引数はLINEBot、返信先、テキスト
