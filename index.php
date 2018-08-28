@@ -36,7 +36,7 @@
 
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
-		$returnStr = 'あなたのID:' . $event->getUserId();
+		$returnStr = 'userId:' . $event->getUserId();
 		//$returnStr.= 'グループID:' . $event->getGroupId();
 		//$returnStr.= 'ルームID:' . $event->getRoomId();
 		//$returnStr.= '友達追加して頂きありがとうございます。';
