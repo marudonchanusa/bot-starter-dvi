@@ -29,7 +29,8 @@
 				joinFriend($bot, $event);
 				break;
 			case 'message':
-				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
+				//replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
+				replyConfirmTemplateMessage($bot, $event->getReplyToke, 'どうする？');
 				break;
 		}
 	}
