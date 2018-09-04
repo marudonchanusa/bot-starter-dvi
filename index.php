@@ -1,4 +1,10 @@
 <?php
+	use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+	use \LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
+	use \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder;
+	use \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
+	use \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder;
+	
 	// Composerでインストールしたライブラリを一括読み込み
 	require_once __DIR__ . '/vendor/autoload.php';
 
@@ -16,10 +22,6 @@
 
 	// 配列に格納された各イベントをループで処理
 	foreach($events as $event) {
-		// テキストを返信
-		//$bot->replyText($event->getReplyToken(), 'TextMessage');
-		//replyTextMessage($bot, $event->getReplyToken(), 'SendTextMessage2');
-
 		error_log('type:' . $event->getType());
 
 		switch($event->getType()){
@@ -30,7 +32,6 @@
 				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
 				break;
 		}
-
 	}
 
 	// 友達追加時のイベント
@@ -46,13 +47,13 @@
 	function replyTextMessage($bot, $replyToken, $text) {
 		// 返信を行いレスポンスを取得
 		// TextMessageBuilerの引数はテキスト
-		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+		$response = $bot->replyMessage($replyToken, new TextMessageBuilder($text));
 	}
 
 	// 画像を送信。引数はLINEBot、返信先、画像URL、サムネイルURL
 	function replyImageMessage($bot, $replyToken, $originalImageUrl, $previewImageUrl){
 		// ImageMessageBuilderの引数は画像URL、サムネイルURL
-		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\ImageMessageBuiler(
+		$response = $bot->replyMessage($replyToken, new ImageMessageBuiler(
 						$originalImageUrl, $previewImageUrl));
 		if (!$response->isSuccessed()){
 			error_log('Failed!'. $response->getHTTPStatus . ' ' . $response->getRawBody());
