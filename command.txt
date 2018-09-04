@@ -1,0 +1,2 @@
+//Herokuのログを見るには
+#heroku logs -tail -a bot-starter-dvi

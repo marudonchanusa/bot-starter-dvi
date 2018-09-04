@@ -29,8 +29,8 @@
 				joinFriend($bot, $event);
 				break;
 			case 'message':
-				//replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
-				replyConfirmTemplateMessage($bot, $event->getReplyToken(), 'どうする？');
+				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
+				//replyConfirmTemplateMessage($bot, $event->getReplyToken(), 'どうする？');
 				break;
 		}
 	}
@@ -38,9 +38,10 @@
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
 		//$returnStr = 'userId:' . $event->getUserId();
-		$msg.= '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。アンケートに回答しますか？';
-		//replyTextMessage($bot, $event->getReplyToken(), $msg);
+		$msg = '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。アンケートに回答しますか？';
+		replyTextMessage($bot, $event->getReplyToken(), $msg);
 
+		$msg = 'アンケートに回答しますか？'; 
 		replyConfirmTemplateMessage($bot, $event->getReplyToken(), $msg);
 	}
 
