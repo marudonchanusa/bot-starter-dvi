@@ -39,7 +39,8 @@
 		$returnStr = 'userId:' . $event->getUserId();
 		//$returnStr.= 'グループID:' . $event->getGroupId();
 		//$returnStr.= 'ルームID:' . $event->getRoomId();
-		$returnStr.= '友達追加して頂きありがとうございます。';
+		$returnStr.= '友達追加して頂きありがとうございます。
+						アンケートに答えて頂くとお得なプレゼントを進呈します。';
 		
 		replyTextMessage($bot, $event->getReplyToken(), $returnStr);
 	}
