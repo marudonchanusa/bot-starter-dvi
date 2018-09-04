@@ -30,7 +30,7 @@
 				break;
 			case 'message':
 				//replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
-				replyConfirmTemplateMessage($bot, $event->getReplyToke, 'どうする？');
+				replyConfirmTemplateMessage($bot, $event->getReplyToken(), 'どうする？');
 				break;
 		}
 	}
@@ -41,7 +41,7 @@
 		$msg.= '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。アンケートに回答しますか？';
 		//replyTextMessage($bot, $event->getReplyToken(), $msg);
 
-		replyConfirmTemplateMessage($bot, $event->getReplyToke, $msg);
+		replyConfirmTemplateMessage($bot, $event->getReplyToken(), $msg);
 	}
 
 	// テキストを送信。引数はLINEBot、返信先、テキスト
