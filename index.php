@@ -25,7 +25,6 @@
 		switch($event->getType()){
 			case 'follow':
 				joinFriend($bot, $event);
-				//replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OKOK!');
 				break;
 			case 'message':
 				replyTextMessage($bot, $event->getReplyToken(), 'Message Recieve OK!');
@@ -36,13 +35,11 @@
 
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
-		$returnStr = 'userId:' . $event->getUserId();
-		//$returnStr.= 'グループID:' . $event->getGroupId();
-		//$returnStr.= 'ルームID:' . $event->getRoomId();
-		$returnStr.= '友達追加して頂きありがとうございます。
-						アンケートに答えて頂くとお得なプレゼントを進呈します。';
-		
+		//$returnStr = 'userId:' . $event->getUserId();
+		$returnStr.= '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。';
 		replyTextMessage($bot, $event->getReplyToken(), $returnStr);
+
+		replyConfirmTemplateMessage($bot, $event->getReplyToke, $msg);
 	}
 
 	// テキストを送信。引数はLINEBot、返信先、テキスト
@@ -50,12 +47,6 @@
 		// 返信を行いレスポンスを取得
 		// TextMessageBuilerの引数はテキスト
 		$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
-
-		// レスポンスが異常な場合
-		//if (!$response->isSuccessed()){
-		//	//エラー内容を出力
-		//	error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
-		//}
 	}
 
 	// 画像を送信。引数はLINEBot、返信先、画像URL、サムネイルURL
@@ -66,5 +57,18 @@
 		if (!$response->isSuccessed()){
 			error_log('Failed!'. $response->getHTTPStatus . ' ' . $response->getRawBody());
 		}
+	}
+
+	function replyConfirmTemplateMessage($bot, $replyToken, $msg){
+		$bot->replyMessage(
+			$replyToken,
+			new TemplateMessageBuilder(
+				'Confirm alt text',
+				new ConfirmTemplateBuilder('アンケートに回答しますか?', [
+					new MessageTemplateActionBuilder('Yes', 'はい'),
+					new MessageTemplateActionBuilder('No', 'いいえ'),
+				])
+			)
+		);
 	}
 ?>
