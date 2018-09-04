@@ -41,7 +41,7 @@
 		$msg = '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。アンケートに回答しますか？';
 		//replyTextMessage($bot, $event->getReplyToken(), $msg);
 
-		$msg = 'アンケートに回答しますか？'; 
+		//$msg = 'アンケートに回答しますか？'; 
 		replyConfirmTemplateMessage($bot, $event->getReplyToken(), $msg);
 	}
 
