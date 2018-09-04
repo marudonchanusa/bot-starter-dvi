@@ -37,8 +37,8 @@
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
 		//$returnStr = 'userId:' . $event->getUserId();
-		$returnStr.= '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。';
-		replyTextMessage($bot, $event->getReplyToken(), $returnStr);
+		$msg.= '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。アンケートに回答しますか？';
+		//replyTextMessage($bot, $event->getReplyToken(), $msg);
 
 		replyConfirmTemplateMessage($bot, $event->getReplyToke, $msg);
 	}
