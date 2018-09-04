@@ -68,8 +68,8 @@
 			new TemplateMessageBuilder(
 				'Confirm alt text',
 				new ConfirmTemplateBuilder($msg, [
-					new MessageTemplateActionBuilder('Yes', 'はい'),
-					new MessageTemplateActionBuilder('No', 'いいえ'),
+					new MessageTemplateActionBuilder('はい', 'yes'),
+					new MessageTemplateActionBuilder('いいえ', 'no'),
 				])
 			)
 		);
