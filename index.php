@@ -38,7 +38,7 @@
 	// 友達追加時のイベント
 	function joinFriend($bot, $event) {
 		//$returnStr = 'userId:' . $event->getUserId();
-		$msg = '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。';
+		$msg = '友達追加して頂きありがとうございます。アンケートに答えて頂くとお得なプレゼントを進呈します。アンケートに回答しますか？';
 		//replyTextMessage($bot, $event->getReplyToken(), $msg);
 
 		$msg = 'アンケートに回答しますか？'; 
@@ -67,7 +67,7 @@
 			$replyToken,
 			new TemplateMessageBuilder(
 				'Confirm alt text',
-				new ConfirmTemplateBuilder('アンケートに回答しますか?', [
+				new ConfirmTemplateBuilder($msg, [
 					new MessageTemplateActionBuilder('Yes', 'はい'),
 					new MessageTemplateActionBuilder('No', 'いいえ'),
 				])
